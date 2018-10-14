@@ -1,25 +1,12 @@
 const path = require("path");
-//const webpack = require("webpack");
 const HtmlWebpackPlugin = new require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => {
-	let config = {
-		entry: [path.join(__dirname, "src/main.js")],
-		//mode: "production",
-		//devtool : "hidden-source-map",
+	return {
+		entry: path.join(__dirname, "src/main.js"),
 		optimization: {
-			minimize: false,
-			splitChunks: {
-				cacheGroups: {
-					styles: {
-						name: "styles",
-						test: /\.css$/,
-						chunks: "all",
-						enforce: true
-					}
-				}
-			}
+			minimize: false
 		},
 		plugins: [
 			new HtmlWebpackPlugin({
@@ -27,16 +14,15 @@ module.exports = (env, argv) => {
 				filename: "./index.html"
 			}),
 			new MiniCssExtractPlugin({
-				filename: "../out/fastflex.css",//"[name].css",
-				chunkFilename: "[id].css"
+				filename: "[name].css"
 			})
 		],
 		module: {
 			rules: [
 				{
-					test: /\.(scss|css)$/,
+					test: /\.s?css$/,
 					use: [
-						MiniCssExtractPlugin.loader,
+						"style-loader",
 						"css-loader",
 						"sass-loader"
 					]
@@ -52,16 +38,4 @@ module.exports = (env, argv) => {
 			}
 		}
 	};
-
-	/*function isProduction() {
-		return argv.mode === "production";
-	}
-
-	if (!isProduction()) {
-		config.devtool = "source-map";
-	}
-	else if (isProduction()) {
-	}*/
-
-	return config;
 };
