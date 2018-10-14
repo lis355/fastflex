@@ -1,0 +1,72 @@
+.f {
+	display: flex;
+}
+
+.f-row {
+	@extend .f;
+	flex-flow: row;
+}
+
+.f-col {
+	@extend .f;
+	flex-flow: column;
+}
+
+.f1 {
+	flex: 1;
+}
+
+.f0 {
+	flex: 0;
+}
+
+.f-ma-l {
+	@extend .f;
+	justify-content: start;
+}
+
+.f-ma-r {
+	@extend .f;
+	justify-content: end;
+}
+
+.f-ma-c {
+	@extend .f;
+	justify-content: center;
+}
+
+.f-ca-l {
+	@extend .f;
+	align-items: start;
+}
+
+.f-ca-r {
+	@extend .f;
+	align-items: end;
+}
+
+.f-ca-c {
+	@extend .f;
+	align-items: center;
+}
+
+.f-c {
+	@extend .f-ma-c;
+	@extend .f-ca-c;
+}
+
+// ------------------------------------ 12 columns grid ------------------------------------
+
+$columns: 12;
+
+@for $i from 1 through $columns - 1 {
+	.f-#{$i}-#{$columns} { flex: 0 0 ($i / $columns * 100%); }
+}
+
+// ------------------------------------ 24 columns grid ------------------------------------
+
+$columns: 24;
+
+@for $i from 1 through $columns - 1 {
+	.f-#{$i}-#{$columns} { flex: 0 0 ($i / $columns * 100%); }
+}
