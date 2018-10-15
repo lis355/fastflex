@@ -1,3 +1,7 @@
+body {
+	font-family: "Courier New", sans-serif;
+}
+
 .absolute-fill {
 	top: 0;
 	bottom: 0;
@@ -7,6 +11,10 @@
 }
 
 div {
+	box-sizing: border-box;
+}
+
+.box {
 	border: 1px solid black;
-	background: linear-gradient(to bottom, white, black);
+	margin: 5px;
 }
